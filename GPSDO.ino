@@ -72,7 +72,7 @@ void setup() {
                       // * frequency deviates from the specified frequency.
     Xtal_Freq=250000000ULL;    // In 1/100 Hz   2.5MHz instead of 25MHz
     Pulse_target=4*Xtal_Freq/10;  //100 Million in 40s
-    Coef_correction = 5; // Correction coefficient to compensate counting error (half of what is needed)
+    Coef_correction = 2; // Correction coefficient to compensate counting error (half of what is needed)
 
     Pulse_target40=(uint32_t)(Pulse_target/40);
     //Serial.print("Pulse_target:");
@@ -118,10 +118,15 @@ void loop(){
     
   if (GPScount >= 42) { //Timer 1 counter is stopped
         Pulse_counted4=(int32_t)(Pulse_counted/4);
-        Serial.println("FreqXtalRef:"+String(Pulse_counted4) + " Hz");
-        
+        //Serial.println("");
+        //Serial.println("FreqXtalRef:"+String(Pulse_counted4) + " Hz");
+        Serial.print(" , ");
+        Serial.print(String(Pulse_counted4));
+        Serial.print(" , ");
         Pulse_diff=(int32_t)(Pulse_counted-Pulse_target);
-        
+        //Serial.println("Error: "+String(Pulse_diff/100.00)+" ppm");
+        Serial.print(String(Pulse_diff/100.00));   
+        Serial.print(" , ");
         
         //Serial.println("PulseDiff:" +String(Pulse_diff) + " pulses/40s");
         if (Pulse_diff<1000000 && Pulse_diff>-1000000){ // Counting seems OK even it could be too important
@@ -170,17 +175,17 @@ void GPSinterrupt(){
   
 }
 void Set_Oscil(){
-    freq=(uint32_t)(Xtal_Freq/100);
+    //freq=(uint32_t)(Xtal_Freq/100);
     //Serial.println("FreqOscil_0:"+ String(freq)+" Hz");
  
-    freq=(uint32_t)(Oscil_1_Freq/100);
+    //freq=(uint32_t)(Oscil_1_Freq/100);
     //Serial.println("FreqOscil_1:"+ String(freq)+" Hz");
     
-    freq=(uint32_t)(Oscil_2_Freq/100);
+    //freq=(uint32_t)(Oscil_2_Freq/100);
     //Serial.println("FreqOscil_2:"+ String(freq)+" Hz");
     
-    Serial.println("XtalCorrection:" +String(Xtal_correction)+" ppb");
-    
+    //Serial.println("XtalCorrection:" +String(Xtal_correction)+" ppb");
+    Serial.println(" , " +String(Xtal_correction));
     si5351.set_correction(Xtal_correction, SI5351_PLL_INPUT_XO); 
     si5351.set_freq(Xtal_Freq, SI5351_CLK0);
     si5351.set_freq(Oscil_1_Freq, SI5351_CLK1); 
@@ -200,5 +205,6 @@ void Set_Oscil(){
     lcd.print("    ");
   }
   lcd.setCursor(0, 1);
-  lcd.println("Error: "+String(Pulse_diff/100.00)+" ppm");     
+  if (Pulse_diff<0) lcd.println("Error:"+String(Pulse_diff/100.00)+"ppm        ");     
+  else              lcd.println("Error: "+String(Pulse_diff/100.00)+"ppm        ");     
  }
