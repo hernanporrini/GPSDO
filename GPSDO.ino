@@ -20,7 +20,7 @@ float       tiempo = 40.00;
 uint64_t    Pulsos_contados;
 uint64_t    Pulsos_esperados = 40000000;  //tiene que ser 1,000,000 X tiempo
 int32_t     Pulsos_diferencia;
-
+bool        pps_flag;
 
 void setup() 
     {
@@ -44,7 +44,6 @@ void setup()
     si5351.drive_strength(SI5351_CLK0,SI5351_DRIVE_8MA); // se define la corriente de salida del canal 0
     si5351.drive_strength(SI5351_CLK1,SI5351_DRIVE_8MA); // se define la corriente de salida del canal 1
     si5351.drive_strength(SI5351_CLK2,SI5351_DRIVE_8MA); // se define la corriente de salida del canal 2
-    Set_Oscil();
     si5351.set_correction(Xtal_correccion, SI5351_PLL_INPUT_XO); 
     si5351.set_freq(Frec_ch0, SI5351_CLK0); // se define la frecuencia de salida del canal 0
     si5351.set_freq(Frec_ch1, SI5351_CLK1); // se define la frecuencia de salida del canal 1
