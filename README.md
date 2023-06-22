@@ -9,7 +9,7 @@ En este articulo presentamos un proyecto relativamente fácil de construir, un o
 
 
 <p align="center">
-<img src="EU1_000493.jpg" width="600">
+<img src="EU1_000493.jpg" width="700">
 </p>
 
 En este articulo presentamos un proyecto relativamente fácil de construir, un oscilador basado en el módulo SI5351, pero con la ayuda de un modulo GPS, podemos convertirlo en un instrumento Patrón semiprofesional 
@@ -24,7 +24,7 @@ Solo necesitamos cualquier microcontrolador, aunque aquí presentamos el Arduino
 - **Modulo GPS con señal 1pps**
 
 <p align="center">
-<img src="EU1_000473.jpg" width="600">
+<img src="EU1_000473.jpg" width="700">
 </p>
 
 # Concepto del Funcionamiento
@@ -34,7 +34,7 @@ El micro controlador realiza la lectura de los pulsos provenientes del Canal 0, 
 Ahora que sabemos que en 40 eventos de 1PPS deberíamos contar 40 millones de pulsos, podemos calcular el error de generación del Módulo DDS SI5351 como la diferencia entre los pulsos contado y los esperados. A través de instrucciones podemos corregir por software el corrimiento de la referencia de su oscilador.
 
 <p align="center">
-<img src="EU1_000483.jpg" width="600">
+<img src="EU1_000483.jpg" width="700">
 </p>
 
 # Software
@@ -54,5 +54,5 @@ En tiempos posteriores a las 8 hs se obtienen errores relativos dentro de la fra
 Recordamos que 1ppm en una frecuencia de 1MHz equivale al 1Hertz de error.
 
 <p align="center">
-<img src="EU1_000463.jpg" width="600">
+<img src="EU1_000463.jpg" width="700">
 </p>
