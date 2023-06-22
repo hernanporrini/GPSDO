@@ -5,7 +5,11 @@
 Hernan LW1EHP
 </p>
 
-En este articulo presentamos un proyecto relativamente fácil de construir, un oscilador basado en el módulo SI5351, pero con la ayuda de un modulo GPS, podemos convertirlo en un instrumento Patrón semiprofesional 
+***En este articulo presentamos un proyecto relativamente fácil de construir, un oscilador basado en el módulo SI5351, pero con la ayuda de un modulo GPS, podemos convertirlo en un instrumento Patrón semiprofesional***
+
+<p align="center">
+<img src="EU1_000493.jpg" width="700">
+</p>
 
 En muchas ocasiones, nos vemos inmersos “en las penumbras de la incertidumbre”, ¿mi equipo funciona en la frecuencia correcta? ...en primera instancia, busco un reporte de otro co-lega…pero ¿estará bien en frecuencia? ... bueno mejor utilizo una radiobaliza … pero y si no puedo sintonizarla … bueno listo voy corriendo al médico brujo de la Tribu RF (El Técnico) y le pido prestado el frecuencímetro ... pero a este instrumento ¿quién lo certifico? vemos una eti-queta que dice INTI 1973 y tiene más golpes que rodilla de zapatero ... Ahhhh ¿y ahora? Listo lo único que tengo certeza es que estoy en las “Penumbras de la incerteza”.
 Para salir del horrible e inhóspito lugar de la incertidumbre presentamos un proyecto que nos permitirá referenciar cualquier equipo y/o frecuencímetro con las señales de GPS, las cuales tienen precisión del nano segundos, porque cada satélite de la constelación de GPS tiene un Reloj atómico de altísima precisión. 
@@ -22,10 +26,6 @@ Principalmente todo el circuito se puede resumir como un Generador DDS con 3 sal
 El Modulo GPS solo se requiere para obtener la señal 1PPS, la cual es una señal rectangular con una frecuencia exacta de 1 Hz, la misma solo esta presente cuando el modulo se “sincroniza” con la constelación de satélites que integran al Sistema GPS. Esta señal no esta sujeta a las osciladores propios del modulo ni ninguna referencia mas que la aportada por los propios satélites que se encuentra recibiendo. Recordamos que cada satélite contiene un reloj atómico para su funcionamiento, por lo tanto nuestro modulo GPS es un remoto de muchos relojes atómico con precisión de nanosegundos.
 El micro controlador realiza la lectura de los pulsos provenientes del Canal 0, recordamos que al ser de 1 MHz, durante 1 segundo de captura podrá contar 1 millon pulsos, pero durante una ventana de tiempo de 40 segundos debería de contar 40 millones de pulsos. El tamaño temporal de la ventana se controla contando exactamente 40 pulsos de la señal 1PPS, y no dependemos de la base de tiempo propia del microcontrolador.
 Ahora que sabemos que en 40 eventos de 1PPS deberíamos contar 40 millones de pulsos, podemos calcular el error de generación del Módulo DDS SI5351 como la diferencia entre los pulsos contado y los esperados. A través de instrucciones podemos corregir por software el corrimiento de la referencia de su oscilador.
-
-<p align="center">
-<img src="EU1_000483.jpg" width="700">
-</p>
 
 # Software
 El archivo .INO, se encuentra disponible en el siguiente repositorio de GitHub:
