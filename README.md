@@ -21,11 +21,21 @@ Solo necesitamos cualquier microcontrolador, aunque aquí presentamos el Arduino
 - **Display LCD 16x02 con I2C**
 - **Modulo GPS con señal 1pps**
 
+
+<p align="center">
+<img src="EU1_000473.jpg" width="700">
+</p>
+
 # Concepto del Funcionamiento
 Principalmente todo el circuito se puede resumir como un Generador DDS con 3 salidas habilitadas en forma simultánea, el Canal 0 en 1MHz , el Canal 1 en 10MHz y el Canal 3 en 100MHz, cualquiera de las 3 salidas puede utilizarse para calibrar o referenciar un equipo y/o instrumentos. El canal 0 también se utiliza como lazo de control y auto ajuste.
 El Modulo GPS solo se requiere para obtener la señal 1PPS, la cual es una señal rectangular con una frecuencia exacta de 1 Hz, la misma solo esta presente cuando el modulo se “sincroniza” con la constelación de satélites que integran al Sistema GPS. Esta señal no esta sujeta a las osciladores propios del modulo ni ninguna referencia mas que la aportada por los propios satélites que se encuentra recibiendo. Recordamos que cada satélite contiene un reloj atómico para su funcionamiento, por lo tanto nuestro modulo GPS es un remoto de muchos relojes atómico con precisión de nanosegundos.
 El micro controlador realiza la lectura de los pulsos provenientes del Canal 0, recordamos que al ser de 1 MHz, durante 1 segundo de captura podrá contar 1 millon pulsos, pero durante una ventana de tiempo de 40 segundos debería de contar 40 millones de pulsos. El tamaño temporal de la ventana se controla contando exactamente 40 pulsos de la señal 1PPS, y no dependemos de la base de tiempo propia del microcontrolador.
 Ahora que sabemos que en 40 eventos de 1PPS deberíamos contar 40 millones de pulsos, podemos calcular el error de generación del Módulo DDS SI5351 como la diferencia entre los pulsos contado y los esperados. A través de instrucciones podemos corregir por software el corrimiento de la referencia de su oscilador.
+
+
+<p align="center">
+<img src="EU1_000483.jpg" width="700">
+</p>
 
 # Software
 El archivo .INO, se encuentra disponible en el siguiente repositorio de GitHub:
