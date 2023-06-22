@@ -7,12 +7,6 @@ Hernan LW1EHP
 
 En este articulo presentamos un proyecto relativamente fácil de construir, un oscilador basado en el módulo SI5351, pero con la ayuda de un modulo GPS, podemos convertirlo en un instrumento Patrón semiprofesional 
 
-
-<p align="center">
-<img src="EU1_000493.jpg" width="700">
-</p>
-
-En este articulo presentamos un proyecto relativamente fácil de construir, un oscilador basado en el módulo SI5351, pero con la ayuda de un modulo GPS, podemos convertirlo en un instrumento Patrón semiprofesional 
 En muchas ocasiones, nos vemos inmersos “en las penumbras de la incertidumbre”, ¿mi equipo funciona en la frecuencia correcta? ...en primera instancia, busco un reporte de otro co-lega…pero ¿estará bien en frecuencia? ... bueno mejor utilizo una radiobaliza … pero y si no puedo sintonizarla … bueno listo voy corriendo al médico brujo de la Tribu RF (El Técnico) y le pido prestado el frecuencímetro ... pero a este instrumento ¿quién lo certifico? vemos una eti-queta que dice INTI 1973 y tiene más golpes que rodilla de zapatero ... Ahhhh ¿y ahora? Listo lo único que tengo certeza es que estoy en las “Penumbras de la incerteza”.
 Para salir del horrible e inhóspito lugar de la incertidumbre presentamos un proyecto que nos permitirá referenciar cualquier equipo y/o frecuencímetro con las señales de GPS, las cuales tienen precisión del nano segundos, porque cada satélite de la constelación de GPS tiene un Reloj atómico de altísima precisión. 
 
@@ -22,10 +16,6 @@ Solo necesitamos cualquier microcontrolador, aunque aquí presentamos el Arduino
 - **Modulo SI5351**
 - **Display LCD 16x02 con I2C**
 - **Modulo GPS con señal 1pps**
-
-<p align="center">
-<img src="EU1_000473.jpg" width="700">
-</p>
 
 # Concepto del Funcionamiento
 Principalmente todo el circuito se puede resumir como un Generador DDS con 3 salidas habilitadas en forma simultánea, el Canal 0 en 1MHz , el Canal 1 en 10MHz y el Canal 3 en 100MHz, cualquiera de las 3 salidas puede utilizarse para calibrar o referenciar un equipo y/o instrumentos. El canal 0 también se utiliza como lazo de control y auto ajuste.
